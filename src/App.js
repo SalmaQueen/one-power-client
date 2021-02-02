@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import LandinPage from './Components/LandingPage'
+import Registration from './Components/Registration'
+import Login from './Components/Login';
+import {
+  BrowserRouter ,
+  Switch,
+  Route,Link
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+export default class App extends Component {
+  render() {
+    return (
+     <div className="App">
+         <BrowserRouter>
+
+
+         
+         <nav className="navbar navbar-expand-lg  navbar-dark navbar-custom fixed-top">
+    <div className="container ">
+      <Link className="navbar-brand text-white" to="/">One Power</Link>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarResponsive">
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/register">Register</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/login">Log In</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white"  to="/logout">Log out</Link>
+          </li>
+        </ul>
+      </div>
     </div>
-  );
-}
+  </nav>
 
-export default App;
+
+          <Switch>
+            <Route exact path={"/"}>
+             <LandinPage/>
+             </Route>
+             <Route  path="/register">
+            <Registration/>
+          </Route>
+          <Route  path="/login">
+           <Login/>
+          </Route>
+          </Switch>
+          
+      
+       </BrowserRouter>
+     </div>
+       
+        
+    
+    )
+  }
+}
